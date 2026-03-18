@@ -1,4 +1,7 @@
+from pathlib import Path
 from pydantic_settings import BaseSettings
+
+_ENV_FILE = Path(__file__).parent.parent / ".env"
 
 
 class Settings(BaseSettings):
@@ -7,7 +10,7 @@ class Settings(BaseSettings):
 
     # Target LLM
     llm_provider: str = "openai"
-    llm_model: str = "gpt-4o-mini"
+    llm_model: str = "gpt-5-mini"
     llm_api_key: str = ""
 
     # Judge LLM (defaults to target model if not set)
@@ -21,7 +24,7 @@ class Settings(BaseSettings):
     # Output
     output: str = ""   # empty = auto-generate scan_YYYYMMDD_HHMMSS.json
 
-    model_config = {"env_file": ".env"}
+    model_config = {"env_file": str(_ENV_FILE)}
 
 
 settings = Settings()

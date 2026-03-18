@@ -59,7 +59,7 @@ class LLMClient:
         response = await client.chat.completions.create(
             model=self._config.model,
             messages=messages,
-            max_tokens=1024,
+            max_completion_tokens=10000,
         )
         return response.choices[0].message.content or ""
 
