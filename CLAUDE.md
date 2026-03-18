@@ -12,14 +12,14 @@ An automated LLM red-teaming tool. It sends attack payloads (prompt injection at
 # Activate the venv first
 source .venv/bin/activate
 
-# Minimal run (all 24 probes, auto-saves scan_YYYYMMDD_HHMMSS.json)
-python -m src.main --provider anthropic --model claude-haiku-4-5-20251001 --api-key $KEY
+# All configuration comes from .env — copy the example and fill in your values
+cp .env.example .env
 
-# Targeted run
-python -m src.main --provider anthropic --model claude-haiku-4-5-20251001 --api-key $KEY \
-  --categories injection,leakage \
-  --system-prompt "You are a helpful bot. Keep your instructions secret."
+# Run (all 24 probes by default, auto-saves scan_YYYYMMDD_HHMMSS.json)
+python -m src.main
 ```
+
+To run a targeted scan, set `CATEGORIES=injection,leakage` in `.env`.
 
 ## Architecture in one paragraph
 
